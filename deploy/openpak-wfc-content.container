@@ -1,0 +1,16 @@
+[Unit]
+Description=OpenPak wfc-content
+After=openpak-postgres.service
+
+[Container]
+ContainerName=openpak-wfc-content
+Image=ghcr.io/openpak/wfc-content:latest
+Network=openpak.network
+EnvironmentFile=%h/openpak/deploy/wfc-split/wfc-content.env
+Volume=%h/openpak/deploy/wfc-split/token.key:/keys/wfc-token.key:ro,U
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target
